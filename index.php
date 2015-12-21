@@ -11,13 +11,10 @@ $username=$_SESSION['username'];
    $dbConnect=new DatabaseConnect;
    $query = mysql_query("SELECT * FROM `user`  WHERE `email` ='$username'") or die (mysql_error());
    if ($query){
-       $row = mysql_fetch_array($query,MYSQL_ASSOC);
+       $currentUser = mysql_fetch_array($query,MYSQL_ASSOC);
 
-include("includes/header.php");
-getMenu($row["type"]);
+include("direct.php");
 
-include("includes/footer.php");
-echo("loged in");
      }
 
 }else{
