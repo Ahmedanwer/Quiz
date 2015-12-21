@@ -34,7 +34,7 @@ $errors= "you have enterd a wrong username or password";
 }
 ?>
 
-<html lang="ar">
+<html>
 <head>
  <title>Welcome to Maradona Quiz</title>
  <meta charset="utf-8">
