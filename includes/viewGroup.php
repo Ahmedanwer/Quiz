@@ -47,7 +47,11 @@
 
        <tr>
          <td><?php  echo($row['ID']); ?></td>
-         <td><?php  echo($row['title']); ?></td>
+          <?php if($currentUser['type'] == 1) { ?>
+              <td><a href="index.php?p=viewQuiz&group_id=<?php echo($row['group_id']); ?>" ><?php  echo($row['title']); ?></a></td>
+          <?php } else { ?>
+              <td><a href="index.php?p=solveQuiz&quiz_id=<?php echo($row['ID']); ?>" ><?php  echo($row['title']); ?></a></td>
+          <?php } ?>
           <td><?php  echo($row['description']); ?></td>
           <td><?php  echo($row['total_marks']); ?></td>
        </tr>
