@@ -19,6 +19,10 @@ if (isset($_POST['submit'])) {
           }
       }
 
+      $createQuestion = mysql_query("INSERT INTO `".DB_DATABASE."`. `take`
+       ( `quiz_id` , `student_mark`,`student_id` )
+      VALUES ('".$Quiz_ID."','".$Result."','".$currentUser['ID']."') ") or die (mysql_error());
+
 ?>
 
 <div class="container">
