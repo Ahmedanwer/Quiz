@@ -22,11 +22,11 @@
 
       $show_quizes_query = mysql_query("SELECT * FROM `quiz` WHERE quiz.group_id=".$_GET['group_id']) or die (mysql_error());
       } else if ($currentUser['type'] == 0 && $is_joined) {
-      echo('<button type="button" class="btn btn-success" onClick="group_action(\'leave\', \''.$_GET['group_id'].'\', \''.$currentUser['ID'].'\')">Leave</button>');
+      echo('<button type="button" class="btn btn-danger" onClick="group_action(\'leave\', \''.$_GET['group_id'].'\', \''.$currentUser['ID'].'\')">Leave</button>');
       $show_quizes_query = mysql_query("SELECT * FROM `quiz` WHERE quiz.group_id=".$_GET['group_id']) or die (mysql_error());
 
     } else {
-      echo('<button type="button" class="btn btn-danger" onClick="group_action(\'join\', \''.$_GET['group_id'].'\', \''.$currentUser['ID'].'\')">Join</button>');
+      echo('<button type="button" class="btn btn-success" onClick="group_action(\'join\', \''.$_GET['group_id'].'\', \''.$currentUser['ID'].'\')">Join</button>');
     }
     ?>
     </div>
