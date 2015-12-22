@@ -35,7 +35,7 @@ VALUES ('".$_POST['title']."','".$_POST['description']."',
      <button class="btn btn-lg btn-primary btn-block " name="submit" type="submit">Create Quiz</button>
 
      <input type="hidden" id="instructor_id" name="instructor_id" value="<?php echo ($currentUser['ID']); ?>" >
-     <input type="hidden" id="group_id" name="group_id" value="<?php echo ($_GET($group_id)); ?>" >
+     <input type="hidden" id="group_id" name="group_id" value="<?php echo ($_GET['group_id']); ?>" >
 
        <br>
        <?php if($errors!=""){ ?> <div class="alert alert-danger"><?php echo $errors; ?></div><?php } ?>
