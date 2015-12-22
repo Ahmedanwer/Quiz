@@ -32,7 +32,7 @@ for ($j=0; $j <3 ; $j++) {
 }
 
 }
-
+header("location: index.php");
 }else{
   $Question_number=$_GET['questions_num'];
   $Quiz_ID=$_GET['quiz_id'];
