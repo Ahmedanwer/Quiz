@@ -71,11 +71,10 @@
 
 <script type="text/javascript">
   function group_action(action, group_id, student_id) {
-      window.location.href='index.php?p=groupAction&action='+action+'&group_id='+group_id+'&student_id='+student_id;
+      window.location.href='index.php?Smode=1&p=groupAction&action='+action+'&group_id='+group_id+'&student_id='+student_id;
   }
 
   function createQuiz(group_id) {
       window.location.href='index.php?p=createQuiz&group_id=' + group_id;
   }
 </script>
-

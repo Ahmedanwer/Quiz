@@ -1,4 +1,10 @@
 <?php
+if(isset($_GET['Smode'])){
+  $requriedPage=$_GET['p'];
+  include("includes/".$requriedPage.".php");
+
+}else{
+
 if(isset($_GET['p']))
 {
 $requriedPage=$_GET['p'];
@@ -32,5 +38,6 @@ include("includes/footer.php");
 
 }
 
+}
 
  ?>
