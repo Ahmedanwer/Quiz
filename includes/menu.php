@@ -32,7 +32,8 @@ if($type==1){
     <div>
       <ul class="nav navbar-nav">
         <li><a href="index.php">Home</a></li>
-        <li><a href="?p=viewGroupList">My Groups</a></li>
+        <li><a href="?p=viewGroupList">Groups</a></li>
+            <li><a href="logout.php">LogOut</a></li>
       </ul>
     </div>
   </div>
