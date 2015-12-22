@@ -10,9 +10,10 @@ if($type==1){
     </div>
     <div>
       <ul class="nav navbar-nav">
-        <li><a href="/Quiz">Home</a></li>
-        <li><a href="/Quiz/index.php?p=viewGroupList">My Groups</a></li>
-        <li><a href="/Quiz/index.php?p=creatGroup">Create Group</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="?p=viewGroupList">My Groups</a></li>
+        <li><a href="?p=creatGroup">Create Group</a></li>
+        <li><a href="logout.php">LogOut</a></li>
       </ul>
     </div>
   </div>
@@ -30,8 +31,8 @@ if($type==1){
     </div>
     <div>
       <ul class="nav navbar-nav">
-        <li><a href="/Quiz">Home</a></li>
-        <li><a href="/Quiz/index.php?p=viewGroupList">My Groups</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="?p=viewGroupList">My Groups</a></li>
       </ul>
     </div>
   </div>
