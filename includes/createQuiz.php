@@ -23,7 +23,7 @@ VALUES ('".$_POST['title']."','".$_POST['description']."',
 
 <div class="container" >
    <form class="form-signin" method="post" action="index.php?p=createQuiz" >
-   
+
      <h2 class="form-signin-heading">Create Quiz</h2>
      <input type="title" id="title" name="title" class="form-control" placeholder="title" required autofocus>
 
