@@ -43,7 +43,7 @@ header("location: index.php");
 
 
 <div class="container" >
-   <form class="form-CreatQuiz" method="post" action="index.php?p=createQuestion" >
+   <form class="form-CreatQuiz" method="post" action="index.php?p=createQuestion&Smode=1" >
      <?php
       for ($i=1; $i <=$Question_number ; $i++) {
 ?>
