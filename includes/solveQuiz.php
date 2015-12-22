@@ -1,6 +1,7 @@
 <?php
 
 
+
 if (isset($_POST['submit'])) {
   $Question_number=$_POST['questions_num'];
   $Quiz_ID=$_POST['quiz_id'];
@@ -19,6 +20,10 @@ if (isset($_POST['submit'])) {
           }
       }
 
+      $createQuestion = mysql_query("INSERT INTO `".DB_DATABASE."`. `take`
+       ( `quiz_id` , `student_mark`,`student_id` )
+      VALUES ('".$Quiz_ID."','".$Result."','".$currentUser['ID']."') ") or die (mysql_error());
+
 ?>
 
 <div class="container">
@@ -36,8 +41,36 @@ if (isset($_POST['submit'])) {
 //Getting Quiz
   $Quiz_ID=$_GET['quiz_id'];
 
+
+
+
+
 $query=mysql_query("SELECT * FROM  `quiz` where quiz.ID=".$Quiz_ID)or die (mysql_error());
 $QuizDetails=mysql_fetch_array($query,MYSQL_ASSOC);
+
+$query=mysql_query("SELECT * FROM  `take` where take.quiz_id=".$Quiz_ID." AND take.student_id=".$currentUser['ID'])or die (mysql_error());
+if(mysql_num_rows($query)==1){
+$take=mysql_fetch_array($query,MYSQL_ASSOC);
+
+$query=mysql_query("SELECT * FROM  `question` where question.quiz_ID=".$Quiz_ID)or die (mysql_error());
+$Question_number=mysql_num_rows($query);
+
+
+
+?>
+<div class="container">
+  <div class="jumbotron">
+    <h1><?php echo($QuizDetails['title']);  ?></h1>
+    <p><?php  echo($QuizDetails['description']); ?></p>
+    <h3>Your Score : <?php echo((($take['student_mark']/$Question_number)*$QuizDetails['total_marks'])."/".$QuizDetails['total_marks']);  ?></h3>
+  </div>
+  </div>
+</div>
+<?php
+
+}else{
+
+
 ?>
 
 <div class="container">
@@ -101,4 +134,5 @@ $QuizDetails=mysql_fetch_array($query,MYSQL_ASSOC);
 
 </div
 <?php
-} ?>
+}
+}?>
