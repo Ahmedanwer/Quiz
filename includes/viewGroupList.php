@@ -17,9 +17,10 @@
 <?php
 while ($row = mysql_fetch_array($query, MYSQL_ASSOC)) {
 ?>
-       <tr>
+      
+         <tr>
          <td><?php  echo($row['ID']); ?></td>
-         <td><?php  echo($row['name']); ?></td>
+         <td> <a href="index.php?p=viewGroup&group_id=<?php echo($row['ID']); ?>" ><?php  echo($row['name']); ?></a></td>
           <td><?php  echo($row['subject']); ?></td>
           <td><?php  echo($row['year']); ?></td>
           <td><?php  echo($row['instructor_name']); ?></td>
