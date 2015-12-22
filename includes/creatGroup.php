@@ -1,4 +1,3 @@
-
 <?php
 if($currentUser['type']==1){
 
@@ -21,7 +20,7 @@ header("location: index.php");
 ?>
 
 <div class="container" >
-   <form class="form-signin" method="post" action="index.php?p=creatGroup" >
+   <form class="form-signin" method="post" action="index.php?p=creatGroup&Smode=1" >
 
 
      <h2 class="form-signin-heading">Create Group</h2>
