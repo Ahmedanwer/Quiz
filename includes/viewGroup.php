@@ -17,8 +17,11 @@
 <div class="container">
   <div class="jumbotron">
     <h1><?php echo($group['name']); ?></h1>
-    <?php if ($is_joined) {
-      echo('<button type="button" class="btn btn-danger" onClick="group_action(\'leave\', \''.$_GET['group_id'].'\', \''.$currentUser['ID'].'\')">Leave</button>');
+    <?php if($currentUser['type']) {
+      echo('<button type="button" class="btn btn-success" onClick=createQuiz('.$_GET['group_id'].')>Create Quiz</button>');
+      $show_quizes_query = mysql_query("SELECT * FROM `quiz` WHERE quiz.group_id=".$_GET['group_id']) or die (mysql_error());
+      } else if ($currentUser['type'] == 0 && $is_joined) {
+      echo('<button type="button" class="btn btn-success" onClick="group_action(\'leave\', \''.$_GET['group_id'].'\', \''.$currentUser['ID'].'\')">Leave</button>');
       $show_quizes_query = mysql_query("SELECT * FROM `quiz` WHERE quiz.group_id=".$_GET['group_id']) or die (mysql_error());
 
     } else {
@@ -69,6 +72,10 @@
 <script type="text/javascript">
   function group_action(action, group_id, student_id) {
       window.location.href='index.php?p=groupAction&action='+action+'&group_id='+group_id+'&student_id='+student_id;
+  }
+
+  function createQuiz(group_id) {
+      window.location.href='index.php?p=createQuiz&group_id=' + group_id;
   }
 </script>
 
