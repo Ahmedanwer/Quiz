@@ -19,6 +19,8 @@
     <h1><?php echo($group['name']); ?></h1>
     <?php if($currentUser['type']) {
       echo('<button type="button" class="btn btn-success" onClick=createQuiz('.$_GET['group_id'].')>Create Quiz</button>');
+      echo('<a href="index.php?p=viewQuiz&group_id='.$_GET['group_id'].'" class="btn btn-success">view Quizes</a>');
+
       $show_quizes_query = mysql_query("SELECT * FROM `quiz` WHERE quiz.group_id=".$_GET['group_id']) or die (mysql_error());
       } else if ($currentUser['type'] == 0 && $is_joined) {
       echo('<button type="button" class="btn btn-success" onClick="group_action(\'leave\', \''.$_GET['group_id'].'\', \''.$currentUser['ID'].'\')">Leave</button>');
