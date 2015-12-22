@@ -5,34 +5,32 @@ if (isset($_POST['submit'])) {
   $Question_number=$_POST['questions_num'];
   $Quiz_ID=$_POST['quiz_id'];
 
-for ($i=1; $i <=$Question_number ; $i++) {
+  $query=mysql_query("SELECT * FROM  `quiz` where quiz.ID=".$Quiz_ID)or die (mysql_error());
+  $QuizDetails=mysql_fetch_array($query,MYSQL_ASSOC);
 
+  $query=mysql_query("SELECT * FROM  `question` where quiz_ID=".$Quiz_ID)or die (mysql_error());
+  $Result=0;
+      while($questions=mysql_fetch_array($query,MYSQL_ASSOC)){
+          $createQuestion = mysql_query("INSERT INTO `".DB_DATABASE."`. `answer`
+           ( `question_id` , `student_answer`,`user_id` )
+          VALUES ('".$questions['ID']."','".$_POST['Q'.$questions['ID']]."','".$currentUser['ID']."') ") or die (mysql_error());
+          if($_POST['Q'.$questions['ID']]==$questions['right_answer']){
+            $Result++;
+          }
+      }
 
-   $createQuestion = mysql_query("INSERT INTO `".DB_DATABASE."`. `question`
-   ( `question` , `quiz_ID` )
-  VALUES ('".$_POST['Question'.$i]."','".$Quiz_ID."') ") or die (mysql_error());
+?>
 
+<div class="container">
+  <div class="jumbotron">
+    <h1><?php echo($QuizDetails['title']);  ?></h1>
+    <p><?php  echo($QuizDetails['description']); ?></p>
+    <h3>Your Score : <?php echo((($Result/$Question_number)*$QuizDetails['total_marks'])."/".$QuizDetails['total_marks']);  ?></h3>
+  </div>
+</div>
 
-if ($createQuestion){
-    $QuestionID = mysql_insert_id();
-    $createQuestion = mysql_query("INSERT INTO `".DB_DATABASE."`. `choices`
-     ( `question_id` , `choice` )
-    VALUES ('".$QuestionID."','".$_POST[$i.'rAnswer']."') ") or die (mysql_error());
-    $rightAnswerID = mysql_insert_id();
-    $updateRight=mysql_query("UPDATE `".DB_DATABASE."`. `question`
-    SET right_answer=".$rightAnswerID." where question.ID=".$QuestionID);
-for ($j=0; $j <3 ; $j++) {
-
-  $createQuestion = mysql_query("INSERT INTO `".DB_DATABASE."`. `choices`
-   ( `question_id` , `choice` )
-  VALUES ('".$QuestionID."','".$_POST[$i.'Answer'.$j]."') ") or die (mysql_error());
-
-}
-
-}
-
-}
-header("location: index.php");
+<?php
+//header("location: index.php");
 }else{
 
 //Getting Quiz
@@ -50,12 +48,14 @@ $QuizDetails=mysql_fetch_array($query,MYSQL_ASSOC);
   </div>
 </div>
 <div class="container" >
-   <form class="form-CreatQuiz" method="post" action="index.php?p=createQuestion" >
+   <form class="form-CreatQuiz" method="post" action="index.php?p=solveQuiz" >
 
 <?php
 
     $query=mysql_query("SELECT * FROM  `question` where quiz_ID=".$Quiz_ID)or die (mysql_error());
+    $Question_Number=0;
         while($questions=mysql_fetch_array($query,MYSQL_ASSOC)){
+          $Question_Number++;
     ?>
     <div class="col-sm-6">
       <h1><?php echo ($questions['question']) ; ?></h1>
@@ -95,7 +95,8 @@ $QuizDetails=mysql_fetch_array($query,MYSQL_ASSOC);
   </p>
 <button class="btn btn-lg btn-primary btn-block " name="submit" type="submit">Submit</button>
 </div>
-<input type="hidden" id="QuizID" name="QuizID" value="<?php echo ($Quiz_ID); ?>" >
+<input type="hidden" id="QuizID" name="questions_num" value="<?php echo ($Question_Number); ?>" >
+<input type="hidden" id="QuizID" name="quiz_id" value="<?php echo ($Quiz_ID); ?>" >
 </form>
 
 </div
