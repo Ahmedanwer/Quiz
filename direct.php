@@ -15,9 +15,19 @@ include("includes/footer.php");
 
   include("includes/header.php");
   getMenu($currentUser["type"]);
+?>
+<div class="container">
+  <div class="jumbotron">
+    <h1>Welcoooome</h1>
+    <p><?php echo($currentUser['name']); ?></p>
+  <p>Email: <?php echo($currentUser['email']); ?></p>
+  <p>Faculty: <?php echo($currentUser['faculty']); ?></p>
+  <p>University: <?php echo($currentUser['university']); ?></p>
+  <p>Department: <?php echo($currentUser['department']); ?></p>
+  </div>
+</div>
 
-echo("homePage");
-
+<?php
   include("includes/footer.php");
 
 }
