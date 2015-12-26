@@ -15,23 +15,29 @@
 ?>
 
 <div class="container">
-  <div class="jumbotron">
-    <h1><?php echo($group['name']); ?></h1>
+  <div class="block center">
+    <h1><?php echo($group['name']); ?>
+
     <?php if($currentUser['type']) {
-      echo('<button type="button" class="btn btn-success" onClick=createQuiz('.$_GET['group_id'].')>Create Quiz</button>');
+      echo('<button type="button" class="btn btn-success" onClick=createQuiz('.$_GET['group_id'].')><i class="fa fa-plus"></i> Create Quiz</button>');
 
       $show_quizes_query = mysql_query("SELECT * FROM `quiz` WHERE quiz.group_id=".$_GET['group_id']) or die (mysql_error());
       } else if ($currentUser['type'] == 0 && $is_joined) {
-      echo('<button type="button" class="btn btn-danger" onClick="group_action(\'leave\', \''.$_GET['group_id'].'\', \''.$currentUser['ID'].'\')">Leave</button>');
+      echo('<button type="button" class="btn btn-danger" onClick="group_action(\'leave\', \''.$_GET['group_id'].'\', \''.$currentUser['ID'].'\')"><i class="fa fa-hand-o-left"></i> Leave</button>');
       $show_quizes_query = mysql_query("SELECT * FROM `quiz` WHERE quiz.group_id=".$_GET['group_id']) or die (mysql_error());
 
     } else {
-      echo('<button type="button" class="btn btn-success" onClick="group_action(\'join\', \''.$_GET['group_id'].'\', \''.$currentUser['ID'].'\')">Join</button>');
+      echo('<button type="button" class="btn btn-success" onClick="group_action(\'join\', \''.$_GET['group_id'].'\', \''.$currentUser['ID'].'\')"><i class="fa fa-sign-in"></i> Join</button>');
     }
     ?>
+    </h1>
+    <p>
+  <p>subject: <?php echo($group['subject']); ?></p>
+    <p>year: <?php echo($group['year']); ?></p>
+    </p>
     </div>
-</div>
 
+<div class="block">
 <?php
   if($is_joined || $currentUser['type']) {
 ?>
@@ -48,14 +54,17 @@
       <?php
       while ($row = mysql_fetch_array($show_quizes_query, MYSQL_ASSOC)) {
 ?>
-
-       <tr>
+<?php
+$linkQuiz;
+if($currentUser["type"] == 1) {
+$linkQuiz="index.php?p=viewMark&quiz_id=".$row['ID'];
+}else{
+$linkQuiz="index.php?p=solveQuiz&quiz_id=".$row['ID'];
+}
+ ?>
+       <tr class="clicable"  onclick="document.location ='<?php echo $linkQuiz; ?>'">
+       <td><?php  echo($row['title']); ?></td>
          <td><?php  echo($row['ID']); ?></td>
-          <?php if($currentUser['type'] == 1) { ?>
-              <td><a href="index.php?p=viewQuiz&group_id=<?php echo($row['group_id']); ?>" ><?php  echo($row['title']); ?></a></td>
-          <?php } else { ?>
-              <td><a href="index.php?p=solveQuiz&quiz_id=<?php echo($row['ID']); ?>" ><?php  echo($row['title']); ?></a></td>
-          <?php } ?>
           <td><?php  echo($row['description']); ?></td>
           <td><?php  echo($row['total_marks']); ?></td>
        </tr>
@@ -69,6 +78,8 @@
   }
 ?>
 
+<div>
+</div>
 
 <script type="text/javascript">
   function group_action(action, group_id, student_id) {

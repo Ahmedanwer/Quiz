@@ -21,7 +21,7 @@ header("location: index.php");
 
 <div class="container" >
    <form class="form-signin" method="post" action="index.php?p=creatGroup&Smode=1" >
-
+   <div class="formPage">
 
      <h2 class="form-signin-heading">Create Group</h2>
      <input type="name" id="name" name="name" class="form-control" placeholder="name" required autofocus>
@@ -39,6 +39,7 @@ header("location: index.php");
     </div>
        <br>
        <?php if($errors!=""){ ?> <div class="alert alert-danger"><?php echo $errors; ?></div><?php } ?>
+</div>
    </form>
 
  </div> <!-- /container -->

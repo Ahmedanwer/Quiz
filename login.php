@@ -32,24 +32,15 @@ $errors= "you have enterd a wrong username or password";
 
 
 }
+include 'includes/header.php';
 ?>
 
-<html>
-<head>
- <title>Welcome to Maradona Quiz</title>
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css">
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-</head>
-<body>
 
-  <div class="container" >
+  <div class="container " >
      <form class="form-signin" method="post" action="index.php" >
-
+       <div class="formPage">
+       <img src="logo.png">
 
        <h2 class="form-signin-heading">Please Login</h2>
        <label for="inputEmail" class="sr-only">Email address</label>
@@ -63,14 +54,15 @@ $errors= "you have enterd a wrong username or password";
        </div>
        <div class="row">
          <div class="col-sm-6">
-       <button class="btn btn-lg btn-primary btn-block " name="submit" type="submit">Login</button>
+       <button class="btn btn-lg btn-primary btn-block " name="submit" type="submit"><i class="fa fa-sign-in"></i> Login</button>
      </div>
      <div class="col-sm-6">
-        <a class="btn btn-lg btn-primary btn-block" href="signUp.php">sign Up</a>
+        <a class="btn btn-lg btn-primary btn-block" href="signUp.php"><i class="fa fa-plus"></i> sign Up</a>
       </div>
       </div>
        <br>
        <?php if($errors!=""){ ?> <div class="alert alert-danger"><?php echo $errors; ?></div><?php } ?>
+</div>
      </form>
 
    </div> <!-- /container -->

@@ -17,26 +17,15 @@ header("location: index.php");
 }
 }
 
-
+include 'includes/header.php';
 ?>
 
-<html lang="ar">
-<head>
- <title>sign Up</title>
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css">
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-</head>
-<body>
 
   <div class="container" >
      <form class="form-signin" method="post" action="signUp.php" >
-
-
+       <div class="formPage">
+       <img src="logo.png">
        <h2 class="form-signin-heading">SignUp</h2>
        <input type="name" id="name" name="name" class="form-control" placeholder="name" required autofocus>
 
@@ -62,6 +51,7 @@ header("location: index.php");
       </div>
        <br>
        <?php if($errors!=""){ ?> <div class="alert alert-danger"><?php echo $errors; ?></div><?php } ?>
+     </div>
      </form>
 
    </div> <!-- /container -->

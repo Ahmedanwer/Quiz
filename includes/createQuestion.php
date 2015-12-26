@@ -47,6 +47,8 @@ header("location: index.php");
      <?php
       for ($i=1; $i <=$Question_number ; $i++) {
 ?>
+<div class="col-sm-6">
+  <div class=" block">
 <h2 class="form-signin-heading">Question <?php echo $i; ?></h2>
 <input type="name" id="Question" name="Question<?php echo $i; ?>" class="form-control" placeholder="Question" required autofocus>
 <br>
@@ -60,6 +62,8 @@ for ($j=0; $j <3 ; $j++) {
 }
 
  ?>
+ </div>
+ </div>
 <?php
       }
      ?>
@@ -67,8 +71,9 @@ for ($j=0; $j <3 ; $j++) {
      <input type="hidden" id="QuizID" name="quiz_id" value="<?php echo ($Quiz_ID); ?>" >
      <input type="hidden" id="QuizID" name="questions_num" value="<?php echo ($Question_number); ?>" >
 <br>
+<div class="col-sm-12">
      <button class="btn btn-lg btn-primary btn-block " name="submit" type="submit">Create Quiz</button>
-
+</div>
    </form>
 
  </div> <!-- /container -->
