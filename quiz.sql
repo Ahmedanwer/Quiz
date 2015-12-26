@@ -18,12 +18,12 @@ CREATE TABLE IF NOT EXISTS `question` (
   `ID` int(11) PRIMARY KEY AUTO_INCREMENT,
   `question` varchar(250) NOT NULL,
   `right_answer` int(11) NOT NULL,
-  `quiz_ID` int(11) NOT NULL REFERENCES quiz(ID)
+  `quiz_ID` int(11) NOT NULL REFERENCES quiz(ID) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `choices` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `question_id` int(11) NOT NULL REFERENCES question(ID) ,
+  `question_id` int(11) NOT NULL REFERENCES question(ID) ON UPDATE CASCADE ON DELETE CASCADE,
   `choice` varchar(250) NOT NULL,
   PRIMARY KEY (`ID`,`question_id`)
 );
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `group` (
   `name` varchar(250) NOT NULL,
   `subject` varchar(250) NOT NULL,
   `year` varchar(250) NOT NULL,
-  `instructor_id` int(11) NOT NULL REFERENCES user(ID)
+  `instructor_id` int(11) NOT NULL REFERENCES user(ID) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `join` (
@@ -55,13 +55,13 @@ CREATE TABLE IF NOT EXISTS `quiz` (
   `title` varchar(250) NOT NULL,
   `description` varchar(250) NOT NULL,
   `total_marks` int(11) NOT NULL,
-  `instructor_id` int(11) NOT NULL REFERENCES user(ID),
-  `group_id` int(11) NOT NULL REFERENCES group(ID)
+  `instructor_id` int(11) NOT NULL REFERENCES user(ID) ON UPDATE CASCADE ON DELETE CASCADE,
+  `group_id` int(11) NOT NULL REFERENCES group(ID) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `take` (
-  `quiz_id` int(11) NOT NULL REFERENCES quiz(ID),
-  `student_id` int(11) NOT NULL REFERENCES user(ID),
+  `quiz_id` int(11) NOT NULL REFERENCES quiz(ID) ON UPDATE CASCADE ON DELETE CASCADE,
+  `student_id` int(11) NOT NULL REFERENCES user(ID) ON UPDATE CASCADE ON DELETE CASCADE,
   `student_mark` int(11) NOT NULL,
   PRIMARY KEY ('quiz_id','student_id')
 );
