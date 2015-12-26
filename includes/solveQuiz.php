@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
 ?>
 
 <div class="container">
-  <div class="jumbotron">
+  <div class="block">
     <h1><?php echo($QuizDetails['title']);  ?></h1>
     <p><?php  echo($QuizDetails['description']); ?></p>
     <h3>Your Score : <?php echo((($Result/$Question_number)*$QuizDetails['total_marks'])."/".$QuizDetails['total_marks']);  ?></h3>
@@ -59,7 +59,7 @@ $Question_number=mysql_num_rows($query);
 
 ?>
 <div class="container">
-  <div class="jumbotron">
+  <div class="block">
     <h1><?php echo($QuizDetails['title']);  ?></h1>
     <p><?php  echo($QuizDetails['description']); ?></p>
     <h3>Your Score : <?php echo((($take['student_mark']/$Question_number)*$QuizDetails['total_marks'])."/".$QuizDetails['total_marks']);  ?></h3>
@@ -73,16 +73,16 @@ $Question_number=mysql_num_rows($query);
 
 ?>
 
-<div class="container">
-  <div class="jumbotron">
-    <h1><?php echo($QuizDetails['title']);  ?></h1>
-    <p><?php  echo($QuizDetails['description']); ?></p>
-    <h3>Total Marks: <?php  echo($QuizDetails['total_marks']); ?></h3>
-  </div>
-</div>
+
 <div class="container" >
    <form class="form-CreatQuiz" method="post" action="index.php?p=solveQuiz" >
-
+<div class="col-sm-12">
+     <div class="block">
+       <h1><?php echo($QuizDetails['title']);  ?></h1>
+       <p><?php  echo($QuizDetails['description']); ?></p>
+       <h3>Total Marks: <?php  echo($QuizDetails['total_marks']); ?></h3>
+     </div>
+   </div>
 <?php
 
     $query=mysql_query("SELECT * FROM  `question` where quiz_ID=".$Quiz_ID)or die (mysql_error());
@@ -91,7 +91,8 @@ $Question_number=mysql_num_rows($query);
           $Question_Number++;
     ?>
     <div class="col-sm-6">
-      <h1><?php echo ($questions['question']) ; ?></h1>
+      <div class="block">
+      <h2><?php echo ($questions['question']) ; ?></h2>
 
     <?php
               $answer_Query=mysql_query("SELECT * FROM  `choices` where question_id=".$questions['ID'])or die (mysql_error());
@@ -118,6 +119,7 @@ $Question_number=mysql_num_rows($query);
 
 
               ?>
+                </div>
             </div>
             <?php
         }
@@ -126,7 +128,9 @@ $Question_number=mysql_num_rows($query);
 <div>
   <p>
   </p>
+  <div class="col-sm-12">
 <button class="btn btn-lg btn-primary btn-block " name="submit" type="submit">Submit</button>
+</div>
 </div>
 <input type="hidden" id="QuizID" name="questions_num" value="<?php echo ($Question_Number); ?>" >
 <input type="hidden" id="QuizID" name="quiz_id" value="<?php echo ($Quiz_ID); ?>" >
