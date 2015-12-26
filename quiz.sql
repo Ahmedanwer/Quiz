@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `group` (
 );
 
 CREATE TABLE IF NOT EXISTS `join` (
-  `group_id` int(11) NOT NULL REFERENCES group(ID),
+  `group_id` int(11) NOT NULL REFERENCES `group`(ID),
   `student_id` int(11) NOT NULL,
   PRIMARY KEY (`group_id`,`student_id`)
 );
@@ -56,14 +56,14 @@ CREATE TABLE IF NOT EXISTS `quiz` (
   `description` varchar(250) NOT NULL,
   `total_marks` int(11) NOT NULL,
   `instructor_id` int(11) NOT NULL REFERENCES user(ID) ON UPDATE CASCADE ON DELETE CASCADE,
-  `group_id` int(11) NOT NULL REFERENCES group(ID) ON UPDATE CASCADE ON DELETE CASCADE
+  `group_id` int(11) NOT NULL REFERENCES `group`(ID) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `take` (
   `quiz_id` int(11) NOT NULL REFERENCES quiz(ID) ON UPDATE CASCADE ON DELETE CASCADE,
   `student_id` int(11) NOT NULL REFERENCES user(ID) ON UPDATE CASCADE ON DELETE CASCADE,
   `student_mark` int(11) NOT NULL,
-  PRIMARY KEY ('quiz_id','student_id')
+  PRIMARY KEY (`quiz_id`,`student_id`)
 );
 
 
